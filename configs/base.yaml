@@ -1,0 +1,67 @@
+hydra:
+  run:
+    dir: ckpt/tmp
+  job:
+    chdir: True
+
+data:
+  source: hf
+  dataset_name: datamol-io/safe-drugs
+  split: train
+  streaming: false
+  tokenizer_name: datamol-io/safe-gpt
+  safe_field: safe
+  smiles_field: smiles
+  file_path: null
+  file_format: safe
+
+wandb:
+  project: molink
+  name: null
+
+loader:
+  global_batch_size: 128
+  batch_size: ${div_up:${.global_batch_size}, ${mul:${trainer.devices}, ${trainer.num_nodes}}}
+  num_workers: 4
+  pin_memory: True
+
+optim:
+  weight_decay: 0.01
+  lr: 2e-4
+  beta1: 0.9
+  beta2: 0.999
+  eps: 1e-8
+  warmup_steps: 1000
+
+trainer:
+  _target_: lightning.Trainer
+  accelerator: cuda
+  num_nodes: 1
+  devices: ${device_count:}
+  accumulate_grad_batches: 1
+  gradient_clip_val: 1.0
+  precision: "bf16"
+  max_steps: 20000
+  log_every_n_steps: 10
+
+model:
+  n_layer: 12
+  n_embd: 768
+  head_size: 64
+  dropout: 0.0
+  max_seq_len: 256
+  vocab_size: 1880
+  layer_norm_eps: 1e-5
+  use_cuda_wkv: false
+
+training:
+  use_bracket_safe: false
+
+callback:
+  _target_: lightning.pytorch.callbacks.ModelCheckpoint
+  dirpath: ${cwd:}/checkpoints
+  filename: "{step}"
+  save_top_k: -1
+  auto_insert_metric_name: False
+  enable_version_counter: False
+  every_n_train_steps: 2000

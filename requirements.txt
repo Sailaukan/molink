@@ -1,0 +1,13 @@
+torch>=2.1.0
+numpy>=1.24.0
+datasets>=2.18.0
+hydra-core>=1.3.2
+omegaconf>=2.3.0
+lightning>=2.3.0
+safe-mol>=0.1.13
+datamol>=0.12.0
+rdkit>=2023.9.1
+tqdm>=4.66.0
+loguru>=0.7.0
+transformers>=4.38.0
+wandb>=0.16.0
