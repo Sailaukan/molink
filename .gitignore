@@ -124,3 +124,18 @@ dmypy.json
 
 # Project specific
 .refs/
+
+# Machine Learning / Model artifacts
+ckpt/
+*.ckpt
+*.pth
+*.pt
+*.pkl
+*.h5
+*.pb
+lightning_logs/
+wandb/
+.hydra/
+runs/
+outputs/
+mlruns/

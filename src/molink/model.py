@@ -161,7 +161,4 @@ class MolinkRWKV(L.LightningModule):
             },
         }
 
-    def lr_scheduler_step(self, scheduler, metric):
-        scheduler.step()
-        current_lr = scheduler.get_last_lr()[0]
-        self.log("train/learning_rate", current_lr, on_step=True, prog_bar=False, logger=True)
+

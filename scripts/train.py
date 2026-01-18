@@ -151,7 +151,10 @@ def train(config):
         trainer = hydra.utils.instantiate(
             config.trainer,
             default_root_dir=os.getcwd(),
-            callbacks=[hydra.utils.instantiate(config.callback)],
+            callbacks=[
+                hydra.utils.instantiate(config.callback),
+                L.pytorch.callbacks.LearningRateMonitor(logging_interval='step')
+            ],
             strategy=strategy,
             logger=wandb_logger,
             enable_progress_bar=True,
