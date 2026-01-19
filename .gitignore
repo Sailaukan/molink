@@ -139,3 +139,6 @@ wandb/
 runs/
 outputs/
 mlruns/
+
+# Evaluation results
+exps/results/

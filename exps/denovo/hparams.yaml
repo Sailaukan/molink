@@ -1,0 +1,42 @@
+# Hyperparameters for de novo generation evaluation
+
+generation:
+  # Number of molecules to generate
+  num_samples: 10000
+
+  # Batch size for generation
+  batch_size: 128
+
+  # Maximum number of tokens per molecule
+  max_new_tokens: 200
+
+  # Sampling parameters
+  temperature: 1.0
+  top_p: 0.9
+  top_k: 0  # 0 means disabled
+
+evaluation:
+  # Whether to save generated molecules to file
+  save_molecules: true
+
+  # Whether to generate property distribution plots
+  save_plots: true
+
+  # Path to training set for novelty calculation (optional)
+  # train_set_path: "data/train.txt"
+
+# Quality thresholds for analysis
+thresholds:
+  # Minimum QED score for drug-likeness
+  qed_min: 0.6
+
+  # Maximum Synthetic Accessibility score
+  sa_max: 4.0
+
+  # Molecular weight range
+  mw_min: 200
+  mw_max: 500
+
+  # LogP range
+  logp_min: -2
+  logp_max: 5

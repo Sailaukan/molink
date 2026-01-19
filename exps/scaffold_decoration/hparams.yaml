@@ -1,0 +1,29 @@
+# Hyperparameters for scaffold decoration evaluation
+
+generation:
+  # Number of molecules to generate per scaffold
+  num_samples_per_scaffold: 100
+
+  # Maximum number of tokens per molecule
+  max_new_tokens: 200
+
+  # Sampling parameters
+  temperature: 1.0
+  top_p: 0.9
+  top_k: 0
+
+  # Whether to apply substructure filtering
+  apply_filter: true
+
+evaluation:
+  # Path to file with scaffold SMILES (one per line)
+  scaffolds_file: "data/test_scaffolds.txt"
+
+  # Whether to verify scaffold preservation
+  verify_scaffold_preservation: true
+
+  # Whether to save generated molecules
+  save_molecules: true
+
+  # Whether to generate plots
+  save_plots: true

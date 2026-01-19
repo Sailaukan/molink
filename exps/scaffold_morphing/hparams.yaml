@@ -1,0 +1,24 @@
+# Hyperparameters for scaffold morphing evaluation
+
+generation:
+  # Number of molecules to generate per morphing example
+  num_samples_per_example: 100
+
+  # Maximum number of tokens per molecule
+  max_new_tokens: 200
+
+  # Sampling parameters
+  temperature: 1.0
+  top_p: 0.9
+  top_k: 0
+
+evaluation:
+  # Path to JSON file with morphing examples
+  # Format: [{"mol": "SMILES", "core": "SMILES", "side_chains": ["SC1", "SC2"]}]
+  examples_file: "data/morphing_examples.json"
+
+  # Whether to save generated molecules
+  save_molecules: true
+
+  # Whether to generate plots
+  save_plots: true

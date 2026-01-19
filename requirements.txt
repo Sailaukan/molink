@@ -11,3 +11,11 @@ tqdm>=4.66.0
 loguru>=0.7.0
 transformers>=4.38.0
 wandb>=0.16.0
+
+# Evaluation framework dependencies
+tdc>=0.4.0
+scipy>=1.10.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+pandas>=2.0.0
+pyyaml>=6.0

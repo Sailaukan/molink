@@ -20,9 +20,9 @@ wandb:
   name: null
 
 loader:
-  global_batch_size: 128
+  global_batch_size: 256
   batch_size: ${div_up:${.global_batch_size}, ${mul:${trainer.devices}, ${trainer.num_nodes}}}
-  num_workers: 4
+  num_workers: 8
   pin_memory: True
 
 optim:
@@ -42,7 +42,7 @@ trainer:
   gradient_clip_val: 1.0
   precision: "bf16"
   max_steps: 20000
-  log_every_n_steps: 10
+  log_every_n_steps: 50
 
 model:
   n_layer: 12
@@ -52,7 +52,7 @@ model:
   max_seq_len: 256
   vocab_size: 1880
   layer_norm_eps: 1e-5
-  use_cuda_wkv: false
+  use_cuda_wkv: true
 
 training:
   use_bracket_safe: false
@@ -64,4 +64,4 @@ callback:
   save_top_k: -1
   auto_insert_metric_name: False
   enable_version_counter: False
-  every_n_train_steps: 2000
+  every_n_train_steps: 5000

@@ -1,0 +1,29 @@
+# Hyperparameters for linker design evaluation
+
+generation:
+  # Number of molecules to generate per fragment pair
+  num_samples_per_pair: 100
+
+  # Maximum number of tokens per molecule
+  max_new_tokens: 200
+
+  # Sampling parameters
+  temperature: 1.0
+  top_p: 0.9
+  top_k: 0
+
+  # Whether to apply substructure filtering
+  apply_filter: true
+
+evaluation:
+  # Path to file with fragment pairs (format: "frag_a,frag_b" per line)
+  fragments_file: "data/test_fragment_pairs.txt"
+
+  # Whether to analyze linker properties
+  analyze_linker_properties: true
+
+  # Whether to save generated molecules
+  save_molecules: true
+
+  # Whether to generate plots
+  save_plots: true

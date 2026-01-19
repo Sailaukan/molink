@@ -11,6 +11,16 @@ from molink.data import get_dataloader, get_tokenizer
 from molink.model import MolinkRWKV
 from molink.utils.training import get_last_checkpoint
 
+# Enable Tensor Cores for faster training on Ada/Ampere GPUs
+torch.set_float32_matmul_precision('medium')
+
+# Allow loading checkpoints with OmegaConf configs (PyTorch 2.6+)
+torch.serialization.add_safe_globals([
+    omegaconf.dictconfig.DictConfig,
+    omegaconf.listconfig.ListConfig,
+    omegaconf.base.ContainerMetadata,
+])
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
