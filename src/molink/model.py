@@ -43,6 +43,22 @@ class MolinkRWKV(L.LightningModule):
         logger.info(f"Max sequence length: {rwkv_config.max_seq_len}, dropout: {rwkv_config.dropout}")
         logger.info(f"Using CUDA WKV kernel: {rwkv_config.use_cuda_wkv}")
 
+    @classmethod
+    def load_from_checkpoint(cls, checkpoint_path, map_location=None, hparams_file=None, strict=None, **kwargs):
+        """
+        Load model from checkpoint with weights_only=False for PyTorch 2.6+ compatibility.
+        This is safe for trusted checkpoints created by the same codebase.
+        """
+        # PyTorch 2.6+ requires weights_only=False for checkpoints with OmegaConf configs
+        kwargs.setdefault('weights_only', False)
+        return super().load_from_checkpoint(
+            checkpoint_path,
+            map_location=map_location,
+            hparams_file=hparams_file,
+            strict=strict,
+            **kwargs
+        )
+
     def forward(self, input_ids):
         return self.model(input_ids)
 
